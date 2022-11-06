@@ -6,10 +6,12 @@ public interface AdminMapper {
 
 //	AdminDTO admin_check(String adminId);
 
-	int generalDelete(String id);
-
-	int partnerDelete(String id);
+//	int generalDelete(String id);
+//
+//	int partnerDelete(String id);
 
 	int ban(String id);
+
+	int partnerBan(String id);
 
 }

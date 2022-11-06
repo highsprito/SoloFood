@@ -16,8 +16,8 @@
 		delete from USER_JOIN where id = #{id}
 	</delete>
 	
-	<delete id="partner_delete">
-		delete from BUSINESS_JOIN where id = #{id}
+	<delete id="partnerBan">
+		delete from BUSINES_JOIN where id = #{id}
 	</delete>	
 	
 	

@@ -19,6 +19,19 @@
 			//window.location.href = '${contextPath}/admin/adminBan';
 		}
 	}
+	
+	function deletePartnerId() {
+		if (!confirm("정말 삭제하시겠습니까?")) {
+			alert("취소되었습니다.");
+		} else {			
+			alert("삭제완료");
+			let form = document.getElementById("form");
+			form.submit();
+			//window.location.href = '${contextPath}/admin/adminBan';
+		}
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -44,11 +57,14 @@
 		<tr>
 			<td><br> <span style="color: green; font-weight: bold;">회원
 					강제 탈퇴(파트너)</span>
-				<form action="adminBan" method="get">
-					<br> -회원 아이디- <input type="text" name="user_id"
-						placeholder="탈퇴시킬 아이디입력"><br> <br>
-					<button type="submit" name="submit">회원 강제 탈퇴</button>
-					<br> <br>
+				<form action="${contextPath}/ban/adminPartnerBan" id="form"  method="get">
+					<br> -회원 아이디- 
+					<input type="text" name="id" placeholder="탈퇴시킬 아이디입력">
+					<br>
+					<br> 
+					<input type="button" value="삭제" onclick="deletePartnerId();"> 
+					<br>
+					<br>
 				</form></td>
 		</tr>
 	</table>

@@ -73,21 +73,30 @@ public class AdminController implements AdminSession{
 		return "admin/adminBan";
 	}	
 	
-	@RequestMapping("generalDelete") //일반회원 삭제
-	public void generalDelete(@RequestParam("id") String id,HttpServletResponse response, HttpServletRequest request) throws IOException{
-		String message = as.generalDelete(id, request);
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();		
-		out.println(message);
-	}
+	@GetMapping("adminPartnerBan") //회원탈퇴권한 페이지
+	public String adminPartnerBan(@RequestParam("id") String id) {
+		System.out.println("id : " + id);
+		as.partnerBan(id);
+		return "admin/adminPartnerBan";
+	}	
 	
-	@PostMapping("partnerDelete") //파트너 삭제
-	public void partnerDelete(@RequestParam("id") String id,HttpServletResponse response, HttpServletRequest request) throws IOException{
-		String message = as.partnerDelete(id, request);
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println(message);
-	}
+	
+	
+//	@RequestMapping("generalDelete") //일반회원 삭제
+//	public void generalDelete(@RequestParam("id") String id,HttpServletResponse response, HttpServletRequest request) throws IOException{
+//		String message = as.generalDelete(id, request);
+//		response.setContentType("text/html; charset=utf-8");
+//		PrintWriter out = response.getWriter();		
+//		out.println(message);
+//	}
+//	
+//	@PostMapping("partnerDelete") //파트너 삭제
+//	public void partnerDelete(@RequestParam("id") String id,HttpServletResponse response, HttpServletRequest request) throws IOException{
+//		String message = as.partnerDelete(id, request);
+//		response.setContentType("text/html; charset=utf-8");
+//		PrintWriter out = response.getWriter();
+//		out.println(message);
+//	}
 	
 	@RequestMapping("member/info")
 	public String info(@RequestParam("id") String id, Model model) {

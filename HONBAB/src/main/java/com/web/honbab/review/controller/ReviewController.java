@@ -47,8 +47,8 @@ public class ReviewController implements MemberSession, SearchSession{
 	public String reviewAllList(Model model, 
 								@RequestParam(value = "num", required = false, defaultValue = "1") int num,
 								HttpSession session) {
-		session.removeAttribute(SEARCHOPTION);
 		session.removeAttribute(SEARCHVALUE);
+		session.removeAttribute(SEARCHOPTION);
 		rs.reviewAllList(model, num);
 		return "review/reviewAllList";
 	}
@@ -147,9 +147,9 @@ public class ReviewController implements MemberSession, SearchSession{
 	public String searchList(MultipartHttpServletRequest mul, Model model,
 			@RequestParam(value = "num", required = false, defaultValue = "1") int num,
 			HttpSession session) throws IOException{
-		session.removeAttribute(SEARCHOPTION);
 		session.removeAttribute(SEARCHVALUE);
-		session.setAttribute(SEARCHOPTION, mul.getParameter("option"));
+		session.removeAttribute(SEARCHVALUE);
+		session.setAttribute(SEARCHVALUE, mul.getParameter("option"));
 		session.setAttribute(SEARCHVALUE, mul.getParameter("text"));
 		rs.searchReview(model, num);
 		return "review/reviewAllList";
