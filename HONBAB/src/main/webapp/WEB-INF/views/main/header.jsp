@@ -43,8 +43,8 @@
           </li>
           <li class="empty">&nbsp;</li>
           <c:if test="${loginUser == null}">
-		  	<li class="user"><a id="join" href="${contextPath }/main/register_form">Join</a></li>
-          	<li class="user"><a id="login" href="${contextPath }/main/login">Login</a></li>
+		  	<li class="user"><a id="join" href="${contextPath }/member/register_form">Join</a></li>
+          	<li class="user"><a id="login" href="${contextPath }/member/login">Login</a></li>
 		  </c:if>
 <%-- 		  <c:if test="${loginUser == admin}">
           	<li class="user"><a id="mypage" href="${contextPath }/admin">MANAGE</a></li>

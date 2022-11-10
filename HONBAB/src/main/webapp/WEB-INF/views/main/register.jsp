@@ -42,7 +42,7 @@ li>#gender{
 	<c:import url="../main/header.jsp"/>
 	<div class="join_form_wrap">
 		<h1 align="center">회원 가입</h1>
-		<form class="join_form" id="register_form" action="register" method="post">
+		<form class="join_form" id="register_form" name="register_form" action="register" method="post">
 			<ul>
 				<li>
 					<span class="index">아이디</span>

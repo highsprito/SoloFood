@@ -19,8 +19,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.honbab.admin.service.OperService;
+import com.web.honbab.challenge.service.ChallengeService;
+import com.web.honbab.find.service.FindService;
 import com.web.honbab.member.dto.MemberDTO;
 import com.web.honbab.member.service.MemberService;
+import com.web.honbab.review.service.ReviewService;
 import com.web.honbab.session.admin.AdminSession;
 import com.web.honbab.session.name.MemberSession;
 
@@ -34,6 +37,16 @@ public class MemberController implements MemberSession, AdminSession{
 	@Autowired
 	private OperService os;
 
+	
+	@Autowired
+	private ReviewService rs;
+	   
+	   @Autowired
+	   private FindService fs;
+	   
+	   @Autowired
+	   private ChallengeService cs;
+	   
 	@PostMapping("user_check")
 	public String userCheck(HttpServletRequest request, RedirectAttributes rs) {
 		int result = ms.user_check(request);
@@ -54,8 +67,11 @@ public class MemberController implements MemberSession, AdminSession{
 	}
 	
 	@RequestMapping("successLogin")
-	public String successLogin(@RequestParam("id") String id, HttpSession session) {
+	public String successLogin(@RequestParam("id") String id, HttpSession session, Model model) {
 		session.setAttribute(LOGIN, id);
+	      rs.reviewBestList(model);
+	      fs.findBestList(model);
+	      cs.challengeBestList(model);
 		return "index";
 	}
 	
@@ -79,11 +95,23 @@ public class MemberController implements MemberSession, AdminSession{
 	public String login() {
 		return "member/login";
 	}
+
+	@GetMapping("idcheckNo")
+	public String idcheckNo() {
+		return "main/idcheckNo";
+	}
 	
 	@GetMapping("idcheck")
-	public String idcheck() {
-		return "member/idcheck";
+	public String idcheck(HttpServletRequest request, RedirectAttributes rs) {
+		Integer result = ms.user_check(request);
+		if(result != null) {
+			rs.addAttribute("id", request.getParameter("id"));
+			return "main/idcheck";
+		} else {
+		return "redirect:/member/idcheckNo";
+		}
 	}
+	
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		if(session.getAttribute("loginUser") != null) {

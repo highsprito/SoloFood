@@ -1,6 +1,13 @@
 function id_check() {
-  window.open("idcheck", "", "width=600, height=200, left=200, top=100");
-//  window.open("", "", "width=600, height=200, left=200, top=100");
+  var id = document.register_form.id.value;
+  if (id == "") {
+    alert("아이디를 입력하세요.");
+    id.focus();
+    return false;
+  }
+  window.open("idcheck?id="+id, "", "width=600, height=200, left=200, top=100");
+  
+  
 };
 
 

@@ -28,14 +28,14 @@
 		<beans:property name="maxUploadSize" value="52428800"/>
 	</beans:bean>
 	
-	
+	<!-- 
 	<interceptors>
            <interceptor>
                <mapping path="/mamber/**"/>
                    <beans:bean id="memberInterceptor" class="com.web.honbab.member.interceptor.MemberInterceptor"/>
         </interceptor>
     </interceptors>
-    
+     -->
 	<!-- .js .css 등 정적 리소스를 불러오지 못할때 -->
 	<default-servlet-handler/>
 	

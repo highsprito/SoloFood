@@ -61,11 +61,22 @@ public class IndexController implements MemberSession{
 	public String login() {
 		return "main/login";
 	}
+	@GetMapping("idcheckNo")
+	public String idcheckNo() {
+		return "main/idcheckNo";
+	}
 	
 	@GetMapping("idcheck")
-	public String idcheck() {
-		return "main/idcheck";
+	public String idcheck(HttpServletRequest request, RedirectAttributes rs) {
+		int result = ms.user_check(request);
+		if(result == 1) {
+			rs.addAttribute("id", request.getParameter("id"));
+			return "main/idcheck";
+		} else {
+		return "main/idcheckNo";
+		}
 	}
+	
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		if(session.getAttribute("loginUser") != null) {
